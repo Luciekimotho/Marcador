@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from models import Bookmark, Tag
+from .models import Bookmark, Tag
 
 class BookmarkAdmin(admin.ModelAdmin):
 	list_display = ('url', 'title', 'owner', 'is_public', 'date_updated')
@@ -10,3 +10,5 @@ class BookmarkAdmin(admin.ModelAdmin):
 	search_fields = ['url' 'title', 'description']
 	readonly_fields = ('date_created', 'date_updated')
 
+admin.site.register(Bookmark, BookmarkAdmin)
+admin.site.register(Tag)
