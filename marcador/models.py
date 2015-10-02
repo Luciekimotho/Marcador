@@ -6,7 +6,7 @@ from django.utils.timezone import now
 
 # Create your models here.
 @python_2_unicode_compatible
-class tag(models.Model):
+class Tag(models.Model):
 	name = models.CharField(max_length=50, unique=True)
 
 
@@ -22,7 +22,7 @@ class tag(models.Model):
 
 class PublicBookmarkManager(models.Manager):
 	def get_queryset(self):
-		qs = super(PublicBookmarkManager self).get_queryset()
+		qs = super(PublicBookmarkManager, self).get_queryset()
 		return qs.filter(is_public=True)
 
 
@@ -31,15 +31,15 @@ class PublicBookmarkManager(models.Manager):
 class Bookmark(models.Model):
 	url = models.URLField()
 	title = models.CharField('title', max_length='255')
-	description = models.CharField('description', blank=True)
+	description = models.TextField('description', blank=True)
 	is_public = models.BooleanField('public', default=True)
 	date_created = models.DateTimeField('date created')
 	date_updated = models.DateTimeField('date updated')
 	owner = models.ForeignKey(User, verbose_name='owner', related_name='bookmarks')
-	tags = models.ManytoManyField(Tag, blank=True)
+	tags = models.ManyToManyField(Tag, blank=True)
 
 
-	objects = models.Mager()
+	objects = models.Manager()
 	public = PublicBookmarkManager()
 
 	class Meta:
@@ -54,4 +54,4 @@ class Bookmark(models.Model):
 		if not self.id:
 			self.date_created = now()
 		self.date_updated = now()
-		super(Bookmark, self).save(*args, *kwargs)
+		super(Bookmark, self).save(*args, **kwargs)
