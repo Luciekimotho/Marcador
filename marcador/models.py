@@ -1,3 +1,4 @@
+# encoding: utf-8
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -15,7 +16,7 @@ class Tag(models.Model):
 		verbose_name_plural = 'tags'
 		ordering = ['name']
 
-	def _str_(self):
+	def __str__ (self):
 		return self.name
 
 
@@ -30,7 +31,7 @@ class PublicBookmarkManager(models.Manager):
 @python_2_unicode_compatible
 class Bookmark(models.Model):
 	url = models.URLField()
-	title = models.CharField('title', max_length='255')
+	title = models.CharField('title', max_length=255)
 	description = models.TextField('description', blank=True)
 	is_public = models.BooleanField('public', default=True)
 	date_created = models.DateTimeField('date created')
@@ -47,7 +48,7 @@ class Bookmark(models.Model):
 		verbose_name_plural = 'bookmarks'
 		ordering = ['-date_created']
 
-	def _str_(self):
+	def __str__(self):
 		return '%s (%s)' % (self.title, self.url)
 
 	def save(self, *args, **kwargs):
