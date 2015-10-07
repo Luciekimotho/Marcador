@@ -19,5 +19,5 @@
      {{ bookmark.date_created|timesince }}ago
 
      {% if bookmark.owner.username == user or user.is_superuser %}
-        <br><a class="btn btn-default btn-xs" role="button"href=" {% url "marcador_bookmark_edit bookmark.pk" %} ">Edit bookmark</a>
+        <br><a class="btn btn-default btn-xs" role="button"href=" {% url "marcador_bookmark_edit" bookmark.pk %} ">Edit bookmark</a>
      {% endif %}

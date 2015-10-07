@@ -1,27 +1,23 @@
 {% extends "base.html" %}
-{% load crispy_form_tags %}
+{% load crispy_forms_tags %}
 
 {% block title %}
    {% if create %}Create{% else %}Edt{% endif %} bookmark
 {% endblock %}
 
 
-{% block %}
-
-{% endblock %}
-
 {% block heading %}
    <h2>
    	  {% if create %}
          Create bookmark
-       {% else %}
+      {% else %}
           Edit book mark
-       {% endif %}
+      {% endif %}
    </h2>
 {% endblock %}
 
 
-% block content%}
+{% block content%}
    {% if create %}
        {% url "marcador_bookmark_create" as action_url %}
    {% else %}
